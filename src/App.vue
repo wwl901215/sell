@@ -17,22 +17,23 @@
 </template>
 
 <script>
-import header from './components/header/header.vue'
-export default {
-  data () {
-    return {
-      seller: {}
+  import header from './components/header/header.vue';
+  export default {
+    data () {
+      return {
+        seller: {}
+      };
+    },
+    components: {
+      'v-header': header
     }
-  },
-  components: {
-    'v-header': header
-  }
-}
+  };
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "stylus/mixin.styl";
   @import "css/app.css";
+
   #app .tab {
     display: flex;
     width: 100%;
