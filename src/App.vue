@@ -16,13 +16,23 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import header from './components/header/header.vue';
   export default {
     data () {
       return {
         seller: {}
       };
+    },
+    created () {
+      this.$http.get('/api/seller').then((response) => {
+        let res = response.body;
+        if (res.code === 200) {
+          console.log(res.data);
+        }
+      }, (err) => {
+        console.log(err);
+      });
     },
     components: {
       'v-header': header
