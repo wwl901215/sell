@@ -20,12 +20,11 @@
       </div>
 
       <div v-if="seller.supports" class="support-count">
-        <span class="count">{{seller.supports.length}}</span>
+        <span class="count">{{seller.supports.length}}个</span>
       </div>
     </div>
     <div class="bulletin-wrapper">
-      <span class="bulletin-title"></span>
-      <span class="bulletin-text"></span>
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
     </div>
   </div>
 </template>
@@ -136,14 +135,12 @@
   }
 
   .support-count {
-    display: flex;
     position: absolute;
-    bottom: 20px;
+    bottom: 18px;
     right: 12px;
-    background-color: red;
-    height: 24px;
-    padding:7px;
-    border-radius: 7px;
+    background-color: rgba(0,0,0,0.2);
+    padding: 7px;
+    border-radius: 20px;
     font-size: 15px;
   }
   .count {
@@ -153,7 +150,23 @@
     height: 28px;
     line-height: 28px;
     padding:0 22px 0 12px;
-    white-space:normal;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .bulletin-title {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 10px;
+    width: 22px;
+    height: 12px;
+    bg-image('bulletin');
+    background-size: 22px 12px;
+    background-repeat: no-repeat;
+  }
+  .bulletin-text {
+    font-size: 10px;
+    margin: 0 4px;
   }
 
 </style>
