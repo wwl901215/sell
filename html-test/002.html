@@ -15,25 +15,43 @@
     }
     .circle {
       position: absolute;
-      width: 26px;
-      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 20px;
+      min-height: 20px;
       top: -13px;
       right: -13px;
       background-color: red;
       color: #ffffff;
       border-radius: 50%;
-      text-align: center;
-      vertical-align: middle;
-      /*padding: 10px;*/
+      padding: 4px 4px 4px 4px;
     }
   </style>
 </head>
 <body>
 <div style="width: 400px; background-color: #fffff9">
-  <div class="lis"><img src="img/brand@2x.png" /><div style="clear: left;">尼古拉斯.旺财ewerwerw</div><span class="circle">6</span></div>
-  <div class="lis"><img src="img/bulletin@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><span class="circle">60</span></div>
-  <div class="lis"><img src="img/invoice_3@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><span class="circle">7</span></div>
-  <div class="lis"><img src="img/guarantee_3@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><span class="circle">2</span></div>
+  <div class="lis"><img src="img/brand@2x.png" /><div style="clear: left;">尼古拉斯.旺财ewerwerw</div><div class="circle"><span>60</span></div></div>
+  <div class="lis"><img src="img/bulletin@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><div class="circle"><span>6</span></div></div>
+  <div class="lis"><img src="img/invoice_3@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><div class="circle"><span>10</span></div></div>
+  <div class="lis"><img src="img/guarantee_3@3x.png" /><div style="clear: left;">尼古拉斯.旺财</div><div class="circle"><span>7</span></div></div>
+  <div style="clear: both;">第一种居中对齐布局方法</div>
+  <div style="background-color: green;width: 100px;height: 100px;position: relative">
+    <div style="width: 20px;height: 20px; background-color: red;position: absolute;left: 50%; top: 50%;transform: translate(-50%,-50%);"></div>
+  </div>
+  <br/>
+  <div style="clear: both;">第二种居中对齐布局方法</div>
+  <div style="background-color: green;width: 100px;height: 100px;position: relative">
+    <div style="width: 20px;height: 20px; background-color: red;position: absolute;left: 0; top: 0;bottom: 0;right: 0;margin: auto"></div>
+  </div>
+  <div style="clear: both;">第三种居中对齐布局方法</div>
+  <div style="background-color: green;width: 100px;height: 100px;display: table-cell;vertical-align: middle;text-align: center">
+    <div style="width: 20px;height: 20px; background-color: red;display: inline-block;"></div>
+  </div>
+  <div style="clear: both;">第四种居中对齐布局方法</div>
+  <div style="background-color: green;width: 100px;height: 100px;display: flex;justify-content: center;align-items: center;">
+    <div style="width: 20px;height: 20px; background-color: red;"></div>
+  </div>
 </div>
 </body>
 </html>
