@@ -1,13 +1,8 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div class="goods-content">
     <div class="goods-left">
-      <ul class="ul">
-        <li v-bind:key="item" v-for="item in goods" class="menu-item">
-          <span class="text">
-             <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>
-            {{item.name}}
-          </span>
-        </li>
+      <ul class="ul" v-for="(item,index) in goods">
+        <div v-bind:key="index" v-on:click="changeLeftTab(index)" :class="['menu-item',index === leftSelect && 'active']">{{item.name}}</div>
       </ul>
     </div>
     <div class="goods-right">
@@ -28,7 +23,8 @@
     },
     data () {
       return {
-        goods: []
+        goods: [],
+        leftSelect:0,
       };
     },
     created () {
@@ -42,7 +38,12 @@
         console.log(err);
       });
       this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special'];
+    },
+    methods:{
+    changeLeftTab: function(index) {
+      this.leftSelect = index;
     }
+    },
   };
 </script>
 
@@ -50,63 +51,43 @@
 
   .goods-content {
     display: flex;
-    position: absolute;
-    top: 174px;
+    flex-direction: row;
     width: 100%;
-    bottom: 46px;
+    height: 100%;
     overflow: hidden;
   }
 
   .goods-left {
-    flex: 0 0 80px;
     width: 80px;
+    height: 100%;
     background-color: #f3f5f7;
   }
 
   .goods-right {
-    flex: 1;
+    width: 100%;
+    height: 100%;
+    background-color:blue;
   }
   .ul {
     list-style-type: none;
-    background-color: red;
-    /*margin-left: -30px;*/
+    padding:0;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .menu-item {
-    /*display: table;*/
+    list-style-type: none;
     height: 54px;
-    width: 56px;
-    line-height: 14px;
-    margin-left: 0px;  }
-  .decrease {
-  bg-image('decrease_1');
-  }
-
-  .discount {
-  bg-image('discount_1');
-  }
-
-  .guarantee {
-  bg-image('guarantee_1');
-  }
-
-  .invoice {
-  bg-image('invoice_1');
-  }
-
-  .special {
-  bg-image('special_1')
-  }
-  .icon {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 4px;
-    background-size: 12px 12px;
-    background-repeat: no-repeat;
-  }
-  /*.text {*/
-    /*display: table-cell;*/
-    /*width: 56px;*/
-  /*}*/
-
+    width: 100%;
+    font-size: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-bottom: 4px white solid;
+    padding: 0 4px 0 6px;
+    }
+    & .active {
+      border-bottom: 4px red solid;
+    }
 </style>
