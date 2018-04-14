@@ -2,11 +2,20 @@
   <div class="goods-content">
     <div class="goods-left">
       <ul class="ul" v-for="(item,index) in goods">
-        <div v-bind:key="index" v-on:click="changeLeftTab(index)" :class="['menu-item',index === leftSelect && 'active']">{{item.name}}</div>
+        <li v-bind:key="index" v-on:click="changeLeftTab(index)" :class="['menu-item',index === leftSelect && 'active']">{{item.name}}</li>
       </ul>
     </div>
-    <div class="goods-right">
-      ejwoej
+    <div class="goods-right" :style="{width:!!this.clientWidth ? this.clientWidth : '100%'}">
+      <ul style="padding:0;margin:0;background-color:blue;">
+          <div class="liright" v-for="(item,index) in goods[leftSelect].foods">
+            <img style="width:64px;height:64px;" :src="item.image"/>
+              <div class="item-left">
+              {{item.name}}
+              <span class="item-text">{{item.description}}</span>
+              <span class="item-text2">月售{{item.sellCount}} <span v-if="item.rating > 0">好评率{{item.rating}}%</span></span>
+              </div>
+          </div>
+      </ul>
     </div>
   </div>
 </template>
@@ -25,6 +34,7 @@
       return {
         goods: [],
         leftSelect:0,
+        clientWidth:"80%",
       };
     },
     created () {
@@ -43,6 +53,17 @@
     changeLeftTab: function(index) {
       this.leftSelect = index;
     }
+    },
+    mounted() {
+        // 动态设置背景图的高度为浏览器可视区域高度
+
+        // 首先在Virtual DOM渲染数据时，设置下背景图的高度．
+        this.clientWidth.height = `${document.documentElement.clientWidth}px`;
+        // 然后监听window的resize事件．在浏览器窗口变化时再设置下背景图高度．
+        const that = this;
+        window.onresize = function temp() {
+            that.clientWidth = `${document.documentElement.clientWidth}px`;
+        };
     },
   };
 </script>
@@ -64,9 +85,9 @@
   }
 
   .goods-right {
-    width: 100%;
+    //width:100%;
     height: 100%;
-    background-color:blue;
+    background-color:yellow;
   }
   .ul {
     list-style-type: none;
@@ -75,6 +96,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .liright {
+  list-style-type: none;
+  background-color: #fffff9;
+  padding:18px;
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+  }
+  .item-text {
+    display: block;
+    margin: 10px 0;
+    font-size: 10px;
+    color: rgb(147,153,159);
+       text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow: hidden;
+  }
+    .item-text2 {
+      display: block;
+      font-size: 10px;
+      color: rgb(147,153,159);
+       text-overflow:ellipsis;
+              white-space:nowrap;
+              overflow: hidden;
+    }
+  .item-left {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    font-size:14px;
+    color: rgb(7,17,27);
+    line-height: 14px;
+         text-overflow:ellipsis;
+                  white-space:nowrap;
+                  overflow: hidden;
   }
   .menu-item {
     list-style-type: none;
