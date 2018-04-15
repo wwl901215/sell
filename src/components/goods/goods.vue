@@ -7,8 +7,8 @@
     </div>
     <div class="goods-right" :style="{width:!!this.clientWidth ? this.clientWidth : '100%'}">
       <ul style="padding:0;margin:0;background-color:blue;">
-          <div class="liright" v-for="(item,index) in goods[leftSelect].foods">
-            <img style="width:64px;height:64px;" :src="item.image"/>
+          <div v-on:click="goodsClick(item)" class="liright" v-for="(item,index) in goods[leftSelect].foods">
+            <img style="width:64px;height:64px;" :src="item.icon"/>
               <div class="item-left">
               {{item.name}}
               <span class="item-text">{{item.description}}</span>
@@ -52,7 +52,10 @@
     methods:{
     changeLeftTab: function(index) {
       this.leftSelect = index;
-    }
+    },
+    goodsClick: function(item) {
+      console.log(item);
+    },
     },
     mounted() {
         // 动态设置背景图的高度为浏览器可视区域高度
